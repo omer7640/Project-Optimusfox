@@ -1,9 +1,10 @@
 export function User({ userData }) {
+  const { name, age, role } = userData;
   return (
     <div>
       <h2>
-        My name is {userData.name} I am {userData.age} and my role is{" "}
-        {userData.role}
+        My name is {name} I am {age} and my role is
+        {role}
       </h2>
     </div>
   );
