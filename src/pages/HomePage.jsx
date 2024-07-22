@@ -14,7 +14,7 @@ export function HomePage() {
     <div>
       <Button />
       <MuiButton>MUI Button</MuiButton>
-      <User userData={userData} />
+      <User />
     </div>
   );
 }
