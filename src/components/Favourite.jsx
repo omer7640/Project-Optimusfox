@@ -7,7 +7,7 @@ export default function Favourite({ cartItems, handleAdd, handleRemove }) {
   return (
     <div className="fav2">
       {cartItems.length === 0 && (
-        <div className="cart-empty">Sorry! Your cart is empty</div>
+        <div className="cart-empty">Sorry! Your Favourites is empty</div>
       )}
       <div>
         {cartItems.map((items) => (
