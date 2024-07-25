@@ -1,16 +1,24 @@
 import React, { useEffect, useState } from "react";
-import { HomePage } from "./pages/HomePage";
-
 import "./App.css";
-
 import Contacts from "../Json/Contacts";
 import AllRoutes from "./routes/AllRoutes";
+import { counterContext } from "./context/context";
+import axios from "axios";
 function App() {
-  const { projectItems } = Contacts;
+  // const { projectItems } = Contacts;
   // console.log(projectItems);
+  const [projectItems, setProjectItems] = useState([]);
+  const [isLoading, setIsloading] = useState(true);
   const [cartItems, setCartItems] = useState(
     JSON.parse(localStorage.getItem("cartItems")) || []
   );
+
+  useEffect(() => {
+    axios.get("http://localhost:5173/persons").then((response) => {
+      setProjectItems(response.data);
+      setIsloading(false);
+    });
+  }, []);
   useEffect(() => {
     localStorage.setItem("cartItems", JSON.stringify(cartItems));
   }, [cartItems]);
@@ -32,17 +40,25 @@ function App() {
       );
     }
   };
-
+  // console.log(data);
+  if (isLoading) {
+    return <h2>Loading...</h2>;
+  }
   return (
-    <div className="App">
-      {/* <HomePage /> */}
-      <AllRoutes
-        handleAdd={handleAdd}
-        cartItems={cartItems}
-        projectItems={projectItems}
-        handleRemove={handleRemove}
-      />
-    </div>
+    <counterContext.Provider
+      value={{
+        cartItems,
+        setCartItems,
+        projectItems,
+        handleAdd,
+        handleRemove,
+      }}
+    >
+      <div className="App">
+        {/* <HomePage /> */}
+        <AllRoutes />
+      </div>
+    </counterContext.Provider>
   );
 }
 

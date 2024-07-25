@@ -1,10 +1,12 @@
 import { Avatar } from "@mui/material";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import React from "react";
 import FavoriteIcon from "@mui/icons-material/Favorite";
+import { counterContext } from "../context/context";
 export default function Card({ handleAdd, projectItem, img, title }) {
   // console.log(projectItem);
   // const { img, title } = projectItem;
+  const value = useContext(counterContext);
 
   return (
     <div className="card">
@@ -75,7 +77,7 @@ export default function Card({ handleAdd, projectItem, img, title }) {
           <div className="flex mt-4 md:mt-6">
             <button
               onClick={() => {
-                handleAdd(projectItem);
+                value.handleAdd(projectItem);
               }}
             >
               <FavoriteIcon className="fav" />

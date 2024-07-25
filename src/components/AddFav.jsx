@@ -1,9 +1,11 @@
 import { Avatar } from "@mui/material";
-import React from "react";
+import React, { useContext } from "react";
+import { counterContext } from "../context/context";
 
-export default function AddFav({ items, handleAdd, img, handleRemove }) {
+export default function AddFav({ items, img }) {
   // console.log(items);
   const { name } = items;
+  const value = useContext(counterContext);
   return (
     <div key={items.id}>
       <div className="card-cart">
@@ -16,7 +18,7 @@ export default function AddFav({ items, handleAdd, img, handleRemove }) {
 
           <button
             className="btn btn-danger"
-            onClick={() => handleRemove(items)}
+            onClick={() => value.handleRemove(items)}
           >
             Remove
           </button>

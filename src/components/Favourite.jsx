@@ -1,23 +1,19 @@
 import { FavoriteBorder } from "@mui/icons-material";
-import React from "react";
+import React, { useContext } from "react";
 import AddFav from "./AddFav";
+import { counterContext } from "../context/context";
 
-export default function Favourite({ cartItems, handleAdd, handleRemove }) {
+export default function Favourite() {
   // console.log(cartItems);
+  const value = useContext(counterContext);
   return (
     <div className="fav2">
-      {cartItems.length === 0 && (
+      {value.cartItems.length === 0 && (
         <div className="cart-empty">Sorry! Your Favourites is empty</div>
       )}
       <div>
-        {cartItems.map((items) => (
-          <AddFav
-            key={items.id}
-            img={items.imgUrl}
-            items={items}
-            handleAdd={handleAdd}
-            handleRemove={handleRemove}
-          />
+        {value.cartItems.map((items) => (
+          <AddFav key={items.id} img={items.imgUrl} items={items} />
         ))}
       </div>
     </div>

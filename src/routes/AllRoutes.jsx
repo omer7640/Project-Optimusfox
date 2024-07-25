@@ -12,27 +12,8 @@ export default function AllRoutes({
   return (
     <div>
       <Routes>
-        <Route
-          path="/"
-          element={
-            <Meets
-              handleAdd={handleAdd}
-              cartItems={cartItems}
-              projectItems={projectItems}
-            />
-          }
-        />
-        <Route
-          path="/fav"
-          element={
-            <Favourite
-              handleAdd={handleAdd}
-              cartItems={cartItems}
-              projectItems={projectItems}
-              handleRemove={handleRemove}
-            />
-          }
-        />
+        <Route path="/" element={<Meets />} />
+        <Route path="/fav" element={<Favourite />} />
       </Routes>
     </div>
   );
