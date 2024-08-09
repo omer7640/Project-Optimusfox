@@ -77,7 +77,7 @@ export default function Card({ handleAdd, projectItem, img, title }) {
           <div className="flex mt-4 md:mt-6">
             <button
               onClick={() => {
-                value.handleAdd(projectItem);
+                value.hfandleAdd(projectItem);
               }}
             >
               <FavoriteIcon className="fav" />

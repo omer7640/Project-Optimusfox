@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from "react";
 import "./App.css";
-import Contacts from "../Json/Contacts";
+
 import AllRoutes from "./routes/AllRoutes";
 import { counterContext } from "./context/context";
-import axios from "axios";
+
+import api from "./utils/axios-utils";
 function App() {
   // const { projectItems } = Contacts;
   // console.log(projectItems);
@@ -12,9 +13,14 @@ function App() {
   const [cartItems, setCartItems] = useState(
     JSON.parse(localStorage.getItem("cartItems")) || []
   );
+  // axios.post("/invoices", data);
 
   useEffect(() => {
-    axios.get("http://localhost:5173/persons").then((response) => {
+    // axios.get("http://localhost:5173/persons").then((response) => {
+    //   setProjectItems(response.data);
+    //   setIsloading(false);
+    // });
+    api.get("/persons").then((response) => {
       setProjectItems(response.data);
       setIsloading(false);
     });
